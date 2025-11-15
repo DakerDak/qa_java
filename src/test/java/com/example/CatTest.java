@@ -27,12 +27,11 @@ public class CatTest {
     public void testGetSound() {
 
         String result = cat.getSound();
-
         assertEquals("Мяу", result);
     }
 
     @Test
-    public void testGetFood() throws Exception {
+    public void testGetFoodReturnsCorrectList() throws Exception {
 
         List<String> expectedFood = List.of("Мясо", "Рыба");
         when(felineMock.eatMeat()).thenReturn(expectedFood);
@@ -40,6 +39,13 @@ public class CatTest {
         List<String> result = cat.getFood();
 
         assertEquals(expectedFood, result);
+
+    }
+    @Test
+    public void testGetFoodCallsEatMeatOnce() throws Exception {
+        List<String> expectedFood = List.of("Мясо", "Рыба");
+        when(felineMock.eatMeat()).thenReturn(expectedFood);
+        cat.getFood();
         verify(felineMock, times(1)).eatMeat();
     }
 

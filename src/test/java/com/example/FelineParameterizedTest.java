@@ -19,7 +19,8 @@ public class FelineParameterizedTest {
                 {5},
                 {0},
                 {10},
-                {100}
+                {100},
+                {3}
         };
     }
 

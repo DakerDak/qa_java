@@ -13,35 +13,40 @@ import static org.mockito.Mockito.*;
 public class LionTest {
 
     @Mock
-    private Predator predatorMock;
+    private Feline felineMock;
 
     private Lion lion;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
-        when(predatorMock.getKittens()).thenReturn(1);
-        lion = new Lion("Самец", predatorMock);
+        when(felineMock.getKittens()).thenReturn(1);
+        lion = new Lion("Самец", felineMock);
     }
 
     @Test
-    public void testGetKittens() throws Exception {
-        when(predatorMock.getKittens()).thenReturn(3);
+    public void testGetKittensReturnsCorrectValue() throws Exception {
+        when(felineMock.getKittens()).thenReturn(3);
         int result = lion.getKittens();
         assertEquals(3, result);
-        verify(predatorMock, times(1)).getKittens();
-    }
 
+    }
+    @Test
+    public void testGetKittensCallsFelineMethodOnce() throws Exception {
+        when(felineMock.getKittens()).thenReturn(3);
+        lion.getKittens();
+        verify(felineMock, times(1)).getKittens();
+    }
     @Test
     public void testGetFood() throws Exception {
         List<String> expectedFood = List.of("Мясо", "Рыба");
-        when(predatorMock.eatMeat()).thenReturn(expectedFood);
+        when(felineMock.eatMeat()).thenReturn(expectedFood);
         List<String> result = lion.getFood();
         assertEquals(expectedFood, result);
     }
 
     @Test(expected = Exception.class)
     public void testLionConstructorWithInvalidSex() throws Exception {
-        new Lion("Неизвестный", predatorMock);
+        new Lion("Неизвестный", felineMock);
     }
 }

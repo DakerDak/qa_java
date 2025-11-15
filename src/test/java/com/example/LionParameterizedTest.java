@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 public class LionParameterizedTest {
 
     @Mock
-    private Predator predatorMock;
+    private Feline felineMock;
 
     private String sex;
     private boolean expectedHasMane;
@@ -34,8 +34,8 @@ public class LionParameterizedTest {
 
     @Test
     public void testLionConstructorWithValidSex() throws Exception {
-        when(predatorMock.getKittens()).thenReturn(1);
-        Lion lion = new Lion(sex, predatorMock);
+
+        Lion lion = new Lion(sex, felineMock);
         assertEquals("Неправильное значение hasMane для пола: " + sex,
                 expectedHasMane, lion.doesHaveMane());
     }

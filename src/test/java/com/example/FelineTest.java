@@ -21,12 +21,6 @@ public class FelineTest {
         assertEquals(1, feline.getKittens());
     }
 
-    @Test
-    public void testGetKittensWithParameter() {
-        assertEquals(5, feline.getKittens(5));
-        assertEquals(0, feline.getKittens(0));
-        assertEquals(100, feline.getKittens(100));
-    }
 
     @Test
     public void testGetFamily() {
@@ -34,9 +28,14 @@ public class FelineTest {
     }
 
     @Test
-    public void testEatMeatReturnsList() throws Exception {
+    public void testEatMeatReturnsNotNull() throws Exception {
         List<String> result = feline.eatMeat();
         assertNotNull(result);
+
+    }
+    @Test
+    public void testEatMeatReturnsNonEmptyList() throws Exception {
+        List<String> result = feline.eatMeat();
         assertFalse(result.isEmpty());
     }
 
